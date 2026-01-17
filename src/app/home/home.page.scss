@@ -1,27 +1,24 @@
-#container {
+.slide-content {
   text-align: center;
+  padding: 10px;
+}
+.slide-content img {
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin: 10% 0;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
+.slide-content h2 {
   margin: 0;
+  font-size: 25px;
+  color: #f2ce05;
 }
 
-#container a {
-  text-decoration: none;
+.slide-content p {
+  font-size: 20px;
+  color: #fff;
+  text-align: justify;
 }
