@@ -17,6 +17,21 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage {
+ 
+    temaActual: 'claro' | 'oscuro' = 'claro';
+
+  cambiarTema() {
+    const root = document.documentElement;
+    const tema = this.temaActual === 'claro' ? 'oscuro' : 'claro';
+
+    root.style.setProperty('--color-fondo-tarjeta', `var(--tema-${tema}-fondo)`);
+    root.style.setProperty('--color-texto-tarjeta', `var(--tema-${tema}-texto)`);
+    root.style.setProperty('--color-slide-title', `var(--tema-${tema}-titulo)`);
+
+    this.temaActual = tema;
+  }
+
+
   genres = [
     {
       title: "Música clásica",
@@ -36,7 +51,25 @@ export class HomePage {
   ];
 
   constructor() {}
+  
+
+
 }
 
+//crear dos temas distintos usando las variables de css
+//--color-fondo-tarjeta = var(tema-claro--fondo), 
+// --color-texto-tarjeta, 
+// --color-slide-title, 
+// --espaciado-slide
+
+// tener estas para cuando uses colores (algo asi)
+
+//crear variables para el tema, 
+// --tema-claro-fondo(tambien oscuro para este, titulo y texto), 
+// --tema-claro-texto, 
+// tema-claro-titulo, para aplicar esas en las de arriba, 
+// en html hacer un boton en cualquiera lado que cuando hagas clicks cambie el color de fondo, las letras sean de otro color
+//
+// resumen: cambiar mediante el click de un boton el tema de los slides (color)
 
 //tarea: agregar 3 slides con info de generos de musica 

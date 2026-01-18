@@ -14,11 +14,29 @@
 .slide-content h2 {
   margin: 0;
   font-size: 25px;
-  color: #f2ce05;
+  color: var(--color-slide-title);
 }
 
 .slide-content p {
   font-size: 20px;
-  color: #fff;
   text-align: justify;
+}
+
+.card {
+  padding: var(--espaciado-base);
+  background-color: var(--color-claro);
+}
+
+.bg-card-test {
+  background-color: pink;
+}
+
+.slide {
+  background: var(--color-fondo-tarjeta);
+  color: var(--color-texto-tarjeta);
+  padding: var(--espaciado-slide);
+}
+
+.slide h2 {
+  color: var(--color-slide-title);
 }

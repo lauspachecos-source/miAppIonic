@@ -18,7 +18,7 @@
 
   <swiper-container pagination ="true" loop="true" slides-per-view="1">
   
-    <swiper-slide *ngFor="let genre of genres"> 
+    <swiper-slide *ngFor="let genre of genres" class="slide"> 
       <div class="slide-content">
         <h2>{{ genre.title }}</h2>
         <img [src]="genre.image" [alt]="genre.title">
@@ -27,5 +27,10 @@
       <h2>Hola mundo</h2>
     </swiper-slide>
   </swiper-container>
+
+<ion-button (click)="cambiarTema()">
+  Cambiar tema
+</ion-button>
+
 
 </ion-content>
