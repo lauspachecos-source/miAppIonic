@@ -1,6 +1,7 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { StorageService } from '../services/storage';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,13 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HomePage {
- 
+export class HomePage implements OnInit{
+  colorClaro =  'var(--color-claro)';
+  colorOscuro = 'var(--color-oscuro)';
+  colorActual = this.colorOscuro;
+
+
+
     temaActual: 'claro' | 'oscuro' = 'claro';
 
   cambiarTema() {
@@ -50,9 +56,28 @@ export class HomePage {
     }
   ];
 
-  constructor() {}
+  constructor(private storageService: StorageService) { 
+  }
   
+  async ngOnInit(){
+    await this.loadStorageData();
+  }
 
+  async cambiarColor(){
+
+  //if ternario
+    this.colorActual = this.colorActual === this.colorOscuro ?   this.colorClaro : this.colorOscuro;
+    await this.storageService.set('theme', this.colorActual)
+    console.log('tema guardado: ', this.colorActual )
+   
+  }
+  
+  async loadStorageData() {
+    const savedTheme = await this.storageService.get('theme');
+    if(savedTheme) {
+      this.colorActual = savedTheme;
+    }
+  }
 
 }
 

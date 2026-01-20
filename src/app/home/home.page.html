@@ -24,13 +24,42 @@
         <img [src]="genre.image" [alt]="genre.title">
         <p> {{ genre.description }}</p>
       </div>
-      <h2>Hola mundo</h2>
     </swiper-slide>
   </swiper-container>
 
-<ion-button (click)="cambiarTema()">
-  Cambiar tema
-</ion-button>
+  <div [style.background-color]="colorActual">
+    Hola mundo
+  </div>
+
+  <ion-button (click)="cambiarColor()">
+    Cambiar tema
+  </ion-button>
+
+   <ion-card class="bg-card-test">
+  <ion-card-header>
+    <ion-card-title>Card Title</ion-card-title>
+    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    Here's a small text description for the card content. Nothing more, nothing less.
+  </ion-card-content>
+</ion-card>
+
 
 
 </ion-content>
+
+
+<!--Demo storage-->
+<div>
+  <h3>Demo ionic storage</h3>
+  <div [style.background-color]="colorActual">
+    <p>Tema actual: {{ colorActual === colorOscuro ? 'Oscuro' : 'Claro' }} </p>
+  </div>
+
+  <div>
+    <ion-button (click)="cambiarColor()">Cambiar tema y guardar</ion-button>
+
+  </div>
+</div>
