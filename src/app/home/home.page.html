@@ -46,9 +46,16 @@
   </ion-card-content>
 </ion-card>
 
+  <p *ngIf="introVisited">
+    Ya visitaste la página Intro
+  </p>
 
+  <ion-button (click)="goToIntro()">
+    Ir a Intro
+  </ion-button>
 
 </ion-content>
+
 
 
 <!--Demo storage-->

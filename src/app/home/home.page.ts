@@ -2,6 +2,8 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { StorageService } from '../services/storage';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -21,10 +23,10 @@ export class HomePage implements OnInit{
   colorClaro =  'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
   colorActual = this.colorOscuro;
+  introVisited = false;
 
 
-
-    temaActual: 'claro' | 'oscuro' = 'claro';
+   /* temaActual: 'claro' | 'oscuro' = 'claro';
 
   cambiarTema() {
     const root = document.documentElement;
@@ -35,7 +37,7 @@ export class HomePage implements OnInit{
     root.style.setProperty('--color-slide-title', `var(--tema-${tema}-titulo)`);
 
     this.temaActual = tema;
-  }
+  }*/
 
 
   genres = [
@@ -56,17 +58,29 @@ export class HomePage implements OnInit{
     }
   ];
 
-  constructor(private storageService: StorageService) { 
+  constructor(private storageService: StorageService, private router: Router) { 
   }
-  
+
+ 
   async ngOnInit(){
     await this.loadStorageData();
   }
+
+  async ionViewWillEnter() {
+  const visited = await this.storageService.get('introVisited');
+  console.log('VALOR EN STORAGE:', visited);
+  this.introVisited = !!visited;
+}
+
+goToIntro() {
+  this.router.navigateByUrl('/intro');
+}
 
   async cambiarColor(){
 
   //if ternario
     this.colorActual = this.colorActual === this.colorOscuro ?   this.colorClaro : this.colorOscuro;
+
     await this.storageService.set('theme', this.colorActual)
     console.log('tema guardado: ', this.colorActual )
    
@@ -81,7 +95,16 @@ export class HomePage implements OnInit{
 
 }
 
-//crear dos temas distintos usando las variables de css
+
+
+
+
+/* tarea router 
+
+Crear una funcion 
+*/ 
+
+// crear dos temas distintos usando las variables de css
 //--color-fondo-tarjeta = var(tema-claro--fondo), 
 // --color-texto-tarjeta, 
 // --color-slide-title, 
