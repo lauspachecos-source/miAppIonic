@@ -70,6 +70,8 @@ export class HomePage implements OnInit{
   const visited = await this.storageService.get('introVisited');
   console.log('VALOR EN STORAGE:', visited);
   this.introVisited = !!visited;
+
+   await this.simularCargarDatos();
 }
 
 goToIntro() {
@@ -91,6 +93,21 @@ goToIntro() {
     if(savedTheme) {
       this.colorActual = savedTheme;
     }
+  }
+
+   
+
+  async simularCargarDatos(){
+    const data = await this.obtenerDatosSimulados();
+    console.log('datos Simulados: ', data);
+  }
+ 
+  obtenerDatosSimulados(){
+    return new Promise((resolve) =>{
+      setTimeout(()=> {
+        resolve(['Rock','Pop', 'Jazz']) 
+      },3500)
+    })
   }
 
 }
