@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -10,32 +10,31 @@ import { StorageService } from '../services/storage';
   templateUrl: './intro.page.html',
   styleUrls: ['./intro.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class IntroPage implements OnInit {
 
-  constructor(private router: Router, private storageService: StorageService ) { 
+  constructor(
+    private router: Router,
+    private storageService: StorageService
+  ) {}
 
-  }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  async goBack(){
-
+  async goBack() {
     // guardar que ya estuve en intro
     await this.storageService.set('introVisited', true);
-    //console.log("Volver")
-
 
     // volver al home 
-    this.router.navigateByUrl("/home");
-
-    //al vover atras o al volver al home guardar en el storage que la vi la pagina intro
+    this.router.navigateByUrl('/home', { replaceUrl: true });
+    //evita volver a intro con el botón atrás
   }
   
-  goToIntro() {
-  this.router.navigateByUrl('/intro');
-}
+
 
 }
+
+
+//al vover atras o al volver al home guardar en el storage que la vi la pagina intro
+//*  goToIntro() { this.router.navigateByUrl('/intro');}

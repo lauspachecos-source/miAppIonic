@@ -1,25 +1,37 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
 :root {
-  --color-claro: #f4cb86;
-  --color-oscuro: #fc7e00;
-  --espaciado-base: 1rem;
-  --espaciado-grande:2rem;
 
-  //tarea 2
-  //tema claro
+ --color-claro: #f4cb86;
+  --color-oscuro: #fc7e00;
+
   --tema-claro-fondo: rgb(201, 167, 129);
   --tema-claro-texto: rgb(97, 24, 24);
   --tema-claro-titulo: #8d3138;
 
-  //tema oscuro 
   --tema-oscuro-fondo: #c57a2e;
-  --tema-oscuro-texto: #0e0b0b;
+  --tema-oscuro-texto: #141010;
   --tema-oscuro-titulo: #222;
 
+  // NUEVO DISEÑO 
 
-  --color-fondo-tarjeta: var(--tema-claro-fondo);
-  --color-texto-tarjeta: var(--tema-claro-texto);
-  --color-slide-title: var(--tema-claro-titulo);
-  --espaciado-slide: 1rem;
+  // Fondo 
+  --app-bg: #f1eadb;
+  --card-bg: #faf8f3;
+
+  // Texto 
+  --text-title: #6b4f2d;
+  --text-body: #4a4036;
+
+  // Botones 
+  --btn-bg: #6b4f2d;
+  --btn-text: #ffffff;
+
+  // Acento 
+  --accent: #8a9a5b;
+
+  // MAPEOS (para no romper Home) 
+  --color-fondo-tarjeta: var(--card-bg);
+  --color-texto-tarjeta: var(--text-body);
+  --color-slide-title: var(--text-title);
 }

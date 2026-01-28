@@ -1,12 +1,52 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>intro</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding" style="background: var(--app-bg)">
 
-<ion-content >
- 
-      <ion-title size="large">Soy intro</ion-title>
-      <ion-button (click)="goBack()">Back to Home </ion-button>
+  <swiper-container pagination="true" slides-per-view="1">
+
+    <swiper-slide>
+      <div class="slide-wrapper ion-text-center ion-padding">
+
+        <h1 style="color: var(--text-title)">
+          Bienvenido 🎵
+        </h1>
+
+        <p style="color: var(--text-body)">
+          Explora géneros musicales y descubre nuevos sonidos
+        </p>
+
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide-wrapper ion-text-center ion-padding">
+        <h1 style="color: var(--text-title)">Rock</h1>
+        <p style="color: var(--text-body)">Guitarras, energía y actitud</p>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide-wrapper ion-text-center ion-padding">
+        <h1 style="color: var(--text-title)">Pop</h1>
+        <p style="color: var(--text-body)">Melodías pegajosas y ritmo</p>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide-wrapper ion-text-center ion-padding">
+
+        <h1 style="color: var(--text-title)">Jazz</h1>
+        <p style="color: var(--text-body)">Improvisación, alma y libertad</p>
+
+        <ion-button
+          expand="block"
+          style="--background: var(--btn-bg); --color: var(--btn-text)"
+          (click)="goBack()"
+        >
+          Continuar
+        </ion-button>
+
+      </div>
+    </swiper-slide>
+
+  </swiper-container>
 
 </ion-content>

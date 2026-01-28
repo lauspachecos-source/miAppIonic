@@ -1,0 +1,98 @@
+.intro-swiper {
+  height: 100%;
+}
+
+swiper-container {
+  height: 100%;
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 2rem;
+}
+
+.slide-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-texto-principal);
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+}
+
+.btn-guitarra {
+  --background: var(--color-guitarra);
+  --background-hover: var(--color-guitarra-dark);
+  --border-radius: 999px;
+  font-weight: 600;
+}
+
+ion-content {
+  --background: var(--app-bg);
+}
+
+h1, h2, h3 {
+  margin-bottom: 1rem;
+  color: var(--text-title);
+  font-weight: 700;
+}
+
+p {
+  color: var(--text-body);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.slide-wrapper {
+  height: 100%;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.bg-app {
+  background: var(--app-bg);
+}
+
+.card-surface {
+  background: var(--card-bg);
+  border-radius: 16px;
+}
+
+.text-title {
+  color: var(--text-title);
+  font-weight: 600;
+}
+
+.text-body {
+  color: var(--text-body);
+}
+
+.btn-main {
+  --background: var(--btn-bg);
+  --color: var(--btn-text);
+  border-radius: 14px;
+  font-weight: 600;
+}

@@ -4,20 +4,17 @@
       Home
     </ion-title>
   </ion-toolbar>
-
   </ion-header>
 
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Home</ion-title>
     </ion-toolbar>
-
   </ion-header>
 
 <ion-content >
 
   <swiper-container pagination ="true" loop="true" slides-per-view="1">
-  
     <swiper-slide *ngFor="let genre of genres" class="slide"> 
       <div class="slide-content">
         <h2>{{ genre.title }}</h2>
@@ -56,9 +53,8 @@
 
 </ion-content>
 
-
-
 <!--Demo storage-->
+
 <div>
   <h3>Demo ionic storage</h3>
   <div [style.background-color]="colorActual">
@@ -67,6 +63,12 @@
 
   <div>
     <ion-button (click)="cambiarColor()">Cambiar tema y guardar</ion-button>
+  </div>
 
+  <div>
+    <p class="ion-text-center ion-text-uppercase ion-text-color-primary">Texto centrado</p>
+    <p class="ion-text-left ion-text-lowercase ion-text-capitalize">Texto a la izquierda</p>
+    <p class="ion-text-right ion-text-capitalize ">Texto a la derecha</p>
+    <p class="d-block ion-margin ion-padding">si no me veo</p>
   </div>
 </div>
