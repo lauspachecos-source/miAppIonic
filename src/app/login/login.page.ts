@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule, FormBuilder, FormGroup, Validator, Validators, FormControl } from '@angular/forms';
-import { IonicModule, ToastController  } from '@ionic/angular';
+import { IonicModule, ToastController, NavController  } from '@ionic/angular';
+import { AuthService } from '../services/auth';
+
 
 @Component({
   selector: 'app-login',
@@ -10,10 +12,16 @@ import { IonicModule, ToastController  } from '@ionic/angular';
   standalone: true,
   imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule]
 })
+ //crear un nuevo guard para cuando intente entrar al home validar si estoy logueada, si lo otro es true
+ //sino redireccionar al login 
+
 export class LoginPage implements OnInit {
 
     loginForm: FormGroup;
-    // tarea 5: añadir los validation_message para password, asi con lo hicimos con email, para pasword
+
+    errorMessage: string = "";
+
+    
       validation_messages = {
         email: [
         {
@@ -36,8 +44,8 @@ export class LoginPage implements OnInit {
         }
       ]
     }
-  constructor( private formBuilder: FormBuilder, 
-  private toastController: ToastController) { 
+  constructor( private formBuilder: FormBuilder, private NavCtrl: NavController, 
+  private toastController: ToastController, private authService: AuthService) { 
     this.loginForm = this.formBuilder.group({
         email: new FormControl(
         '',
@@ -60,15 +68,38 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   async loginUser(credentials: any) {
-    console.log('Email:', credentials.email);
-    console.log('Password:', credentials.password);
+  console.log('Email:', credentials.email);
+  console.log('Password:', credentials.password);
 
-    const toast = await this.toastController.create({
-    message: 'Login enviado correctamente',
-    duration: 2000,
-    position: 'bottom',
-    color: 'success'
+  this.authService.loginUser(credentials)
+    .then(async res => {
+      // Login correcto
+      this.errorMessage = "";
+      
+      console.log('LOGIN CORRECTO → redirigiendo a INTRO');
+      console.log('isLogged ya fue guardado en storage');
+
+      const toast = await this.toastController.create({
+        message: String(res), // login correcto
+        duration: 2000,
+        position: 'bottom',
+        color: 'success'
+      }); 
+      await toast.present();
+
+      // luego del login correcto
+      this.NavCtrl.navigateRoot('/intro');
+    })
+    .catch(async error => {
+      this.errorMessage = error;
+
+      const toast = await this.toastController.create({
+        message: error, // login incorrecto
+        duration: 2000,
+        position: 'bottom',
+        color: 'danger'
+      });
+      await toast.present();
     });
-    await toast.present();
   }
 }

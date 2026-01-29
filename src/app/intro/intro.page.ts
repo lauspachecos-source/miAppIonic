@@ -31,7 +31,10 @@ export class IntroPage implements OnInit {
     //evita volver a intro con el botón atrás
   }
   
-
+  async finishIntro() {
+  await this.storageService.set('introVisited', true);
+  this.router.navigateByUrl('/home', { replaceUrl: true });
+}
 
 }
 
