@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <figure class="profile-default-image ion-text-center">
+    <p>Ingresa tus datos</p>
+    <img src="assets/images/user.png" alt="Login">
+  </figure>
+
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+
+    <ion-item>
+      <ion-input
+        label="Email"
+        labelPlacement="stacked"
+        placeholder="Escribe tu email"
+        formControlName="email">
+      </ion-input>
+    </ion-item>
+
+    <div class="error-message ion-text-center">
+      <!--Tarea 3: utilizar para darte a estilo a como muestra el mensaje, en este div y agregar una clase para estilizar esa info, centrada, bonita, si sale en pop up, se muestre el error de forma estetica -->
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div
+          *ngIf="loginForm.get('email')?.hasError(validation.type) &&
+                 loginForm.get('email')?.dirty">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Tarea 1: mostrar mensaje de error en la validacion del campo password, por ejemplo que cuando son menos de 6 caracteres aparezca el error y tambien que se active el boton a partir de los 6 char-->
+    <!--Tarea 2: cambiar input a password-->
+    <ion-item>
+      <ion-input
+        type="password"
+        label="Password"
+        labelPlacement="stacked"
+        placeholder="Escribe tu password"
+        formControlName="password">
+      </ion-input>
+    </ion-item>
+
+    <div class="error-message ion-text-center">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div
+          *ngIf="loginForm.get('password')?.hasError(validation.type) &&
+                 loginForm.get('password')?.dirty">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-button
+      expand="block"
+      class="login-btn"
+      shape="round"
+      color="success"
+      type="submit"
+      [disabled]="!loginForm.valid">
+      Login
+    </ion-button>
+
+  </form>
+</ion-content>
+
+<!--tarea adicional: Ademas que permita enviar el formulario para imprimir losdatos en consola usery password-->

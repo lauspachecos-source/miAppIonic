@@ -1,0 +1,85 @@
+//tarea 4:darle estilos generales al login,mirar en ionic component.. por ejemplo usar el toast para mostrar el mensaje, o triggered
+
+.profile-default-image {
+    height: auto;
+    width: auto;
+}
+
+.profile-default-image img{
+ height: auto;
+width: 94px;
+ border-radius: 82%;
+}
+
+.error-message {
+  text-align: center;
+  color: #b13a2e;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+ion-content {
+  --padding-top: 16px;
+}
+
+form {
+  padding: 16px;
+}
+
+ion-content {
+  --background: var(--app-bg);
+}
+
+ion-toolbar {
+  --background: var(--card-bg);
+}
+
+ion-title {
+  color: var(--text-title);
+}
+
+ion-title,
+p {
+  color: var(--text-title);
+}
+
+ion-input {
+  --color: var(--text-body);
+  --placeholder-color: rgba(74, 64, 54, 0.6);
+}
+
+ion-button {
+  --background: var(--btn-bg);
+  --color: var(--btn-text);
+  --border-radius: 20px;
+}
+
+ion-item {
+  --background: var(--card-bg);
+  --border-color: rgba(107, 79, 45, 0.3);
+  --highlight-color-focused: var(--accent);
+}
+
+.login-btn {
+  max-width: 260px;
+  margin: 24px auto 0;
+}
+
+ion-button[disabled] {
+  --background: rgba(107, 79, 45, 0.4);
+  --color: #fff;
+}
+
+.profile-default-image img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/* ejemplo par aplicar border radius
+.profile-default-image img{
+ border-radius: 50%;
+}
+*/
