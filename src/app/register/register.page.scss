@@ -1,0 +1,161 @@
+.error {
+  color: var(--ion-color-danger);
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.login-btn.clear-btn {
+  margin-top: 8px;
+  font-size: 14px;
+}
+ion-content {
+  --background: var(--app-bg);
+}
+
+.card {
+  background: var(--card-bg);
+}
+//tarea 4:darle estilos generales al login,mirar en ionic component.. por ejemplo usar el toast para mostrar el mensaje, o triggered
+
+ion-header,
+ion-toolbar {
+  --background: var(--app-bg);
+  --border-width: 0;
+  border-radius: 10px;
+   margin-top: 5px;
+  box-shadow: none !important;
+}
+
+ion-header::after {
+  display: none !important;
+}
+
+ion-item {
+  --background: var(--card-bg);
+  --border-color: rgba(107, 79, 45, 0.3);
+  --highlight-color-focused: var(--accent);
+}
+
+
+ion-input {
+  --background: transparent;  /* Fondo transparente */
+  --border-color: #ccc;       /* Borde claro */
+  --highlight-color-focused: var(--ion-color-primary);  /* Color de foco */
+}
+
+.profile-default-image img{
+ height: auto;
+width: 94px;
+ border-radius: 82%;
+}
+
+.error-message {
+  text-align: center;
+  color: #b13a2e;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+ion-content {
+  --padding-top: 16px;
+  --background: var(--app-bg);
+}
+
+form {
+  padding: 16px;
+}
+
+
+ion-toolbar {
+  --background: var(--card-bg);
+}
+
+ion-title {
+  margin-top: 20px; 
+  color: var(--text-title);
+}
+
+ion-title,
+p {
+  color: var(--text-title);
+}
+
+ion-input {
+  --color: var(--text-body);
+  --placeholder-color: rgba(74, 64, 54, 0.6);
+}
+
+ion-button {
+  --background: var(--btn-bg);
+  --color: var(--btn-text);
+  --border-radius: 20px;
+}
+
+ion-item {
+  --background: var(--card-bg);
+  --border-color: rgba(107, 79, 45, 0.3);
+  --highlight-color-focused: var(--accent);
+}
+
+.secondary-btn {
+ 
+  width: 85%;          /* casi como el grande */
+  max-width: 230px;
+  margin: 8px auto;  
+  display: block;    
+  font-size: 14px;
+    
+ 
+}
+
+.login-btn {
+  max-width: 260px;
+  width: 100%;
+  margin: 24px auto 0;
+  //margin: 12px auto 0;
+  font-size: 16px;
+
+}
+
+ion-button[disabled] {
+  --background: rgba(107, 79, 45, 0.4);
+  --color: #fff;
+}
+
+.profile-default-image img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+form {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.card {
+
+  padding-bottom: 41px;
+  border-radius: 10px;
+}
+.toolbar-container {
+ border-radius: 10px;
+}
+/* ejemplo par aplicar border radius
+.profile-default-image img{
+ border-radius: 50%;
+}
+*/
+ 
+  .error {
+  color: red;
+  font-size: 12px;
+  margin-left: 16px;
+}
+
+.error {
+  color: #b13a2e;
+  font-size: 0.85rem;
+  margin-left: 16px;
+}

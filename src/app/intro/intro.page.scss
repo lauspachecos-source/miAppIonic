@@ -41,6 +41,10 @@ p {
   color: #555;
 }
 
+.slide-wrapper p {
+  margin-bottom: var(--space-lg);
+}
+
 .btn-guitarra {
   --background: var(--color-guitarra);
   --background-hover: var(--color-guitarra-dark);
@@ -72,27 +76,3 @@ p {
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-.bg-app {
-  background: var(--app-bg);
-}
-
-.card-surface {
-  background: var(--card-bg);
-  border-radius: 16px;
-}
-
-.text-title {
-  color: var(--text-title);
-  font-weight: 600;
-}
-
-.text-body {
-  color: var(--text-body);
-}
-
-.btn-main {
-  --background: var(--btn-bg);
-  --color: var(--btn-text);
-  border-radius: 14px;
-  font-weight: 600;
-}

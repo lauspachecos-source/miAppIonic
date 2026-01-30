@@ -7,23 +7,38 @@ export class AuthService {
 
   constructor(private storageService: StorageService){}
 
-  async loginUser(credentials: any){
-    //tarea: si el login es exitoso guardar en el storage login:true por ejemplo
-    //si es true, en el guard me va a dejar entrar al login
 
-      return new Promise(async (accept, reject) => {
-      if (
-        credentials.email == "andrea@gmail.com" &&
-        credentials.password =="123456789"
-      ){
-        await this.storageService.set('isLogged', true);
-        accept("login correcto")
-      }
-      else {
-        reject("login incorrecto")
-      }
-    })
-  }
+   //tarea: si el login es exitoso guardar en el storage login:true por ejemplo
+    //si es true, en el guard me va a dejar entrar al login
+  async loginUser(credentials: any){
+
+  return new Promise(async (accept, reject) => {
+
+    const users =
+      await this.storageService.get('users') || [];
+
+    const user = users.find(
+    (u: any) =>
+    u.email?.trim() === credentials.email?.trim() &&
+    u.password === credentials.password
+    );
+
+    if (user) {
+
+      await this.storageService.set('isLogged', true);
+
+      accept('Login correcto');
+
+    } else {
+
+      reject('Correo o contraseña incorrectos');
+
+    }
+
+  });
+
+}
+
 
   logout(){
     this.storageService.set('isLogged', false);

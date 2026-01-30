@@ -65,6 +65,10 @@ export class LoginPage implements OnInit {
     })
   }
 
+  goRegister() {
+    this.NavCtrl.navigateForward('/register');
+  }
+
   ngOnInit() {
   }
   async loginUser(credentials: any) {

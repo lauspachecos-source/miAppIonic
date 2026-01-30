@@ -19,15 +19,12 @@ width: 94px;
 }
 
 ion-content {
-  --padding-top: 16px;
+  --padding-top: 8px;
+  --background: var(--app-bg);
 }
 
 form {
   padding: 16px;
-}
-
-ion-content {
-  --background: var(--app-bg);
 }
 
 ion-toolbar {
@@ -48,10 +45,16 @@ ion-input {
   --placeholder-color: rgba(74, 64, 54, 0.6);
 }
 
+
 ion-button {
   --background: var(--btn-bg);
   --color: var(--btn-text);
   --border-radius: 20px;
+}
+
+.login-btn.clear-btn {
+  margin-top: 8px;
+  font-size: 14px;
 }
 
 ion-item {
@@ -62,7 +65,8 @@ ion-item {
 
 .login-btn {
   max-width: 260px;
-  margin: 24px auto 0;
+  margin: 10px auto 0;
+  font-size: 15px;
 }
 
 ion-button[disabled] {
@@ -75,6 +79,26 @@ ion-button[disabled] {
   height: 72px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.secondary-btn {
+  width: 85%;          /* casi como el grande */
+  max-width: 230px;
+  margin: 8px auto;  
+  display: block;    
+  font-size: 14px;
+}
+
+ion-content form {
+  padding-bottom: 0px !important;
+}
+
+ion-input input {
+  color: var(--text-body) !important;
+}
+
+ion-content .ion-padding form {
+  padding-bottom: 0px !important;
 }
 
 

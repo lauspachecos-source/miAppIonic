@@ -1,0 +1,92 @@
+<ion-content class="ion-padding">
+
+  <div class="card">
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title  Class="ion-title ion-text-center">Registro</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
+    >
+
+      <ion-item>
+        <ion-input
+          placeholder="Nombre"
+          formControlName="name">
+        </ion-input>
+      </ion-item>
+
+      <p class="error"
+          *ngIf="registerForm.get('name')?.dirty && registerForm.get('name')?.invalid">
+          Nombre inválido
+      </p>
+
+      <ion-item>
+        <ion-input
+          placeholder="Apellido"
+          formControlName="lastname">
+        </ion-input>
+      </ion-item>
+
+      <p class="error"
+      *ngIf="registerForm.get('lastname')?.dirty && registerForm.get('lastname')?.invalid">
+      Apellido inválido
+      </p>
+
+      <ion-item>
+        <ion-input
+          type="email"
+          placeholder="Correo"
+          formControlName="email">
+        </ion-input>
+      </ion-item>
+
+      <p class="error"
+      *ngIf="registerForm.get('email')?.dirty && registerForm.get('email')?.invalid">
+      Email inválido
+      </p>
+
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Contraseña"
+          formControlName="password">
+        </ion-input>
+      </ion-item>
+
+      <p class="error"
+      *ngIf="registerForm.get('password')?.dirty && registerForm.get('password')?.invalid">
+      Mínimo 6 caracteres
+      </p>
+
+      <ion-button
+         expand="block"
+        class="login-btn"
+        shape="round"
+        color="success"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
+        Registrarse
+      </ion-button>
+
+    </form>
+
+    <ion-button
+      
+        class="clear-btn secondary-btn"
+        shape="round"
+        color="success"
+         type="button" 
+      (click)="goToLogin()"
+    >
+      Volver al login
+    </ion-button>
+
+  </div>
+
+</ion-content>
