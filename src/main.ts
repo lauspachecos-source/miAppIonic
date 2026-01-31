@@ -7,6 +7,9 @@ import { AppComponent } from './app/app.component';
 
 import { Storage } from '@ionic/storage-angular';
 import { register } from 'swiper/element/bundle';
+import { addIcons} from 'ionicons';
+import * as allIcons from 'ionicons/icons'
+addIcons(allIcons);
 
 register();
 

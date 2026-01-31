@@ -1,0 +1,45 @@
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-header>
+      <ion-toolbar>
+        <ion-menu-toggle auto-hide="false">
+          <ion-button fill="clear">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item button (click)="goToIntro()">
+          <ion-icon slot="start" name="book"></ion-icon>
+          Ver la intro
+        </ion-item>
+        <ion-item button (click)="goToSettings()">
+          <ion-icon slot="start" name="settings"></ion-icon>
+          Ajustes
+        </ion-item>
+        <ion-item button (click)="goToProfile()">
+          <ion-icon slot="start" name="person"></ion-icon>
+          Mi Perfil
+        </ion-item>
+        <ion-item button (click)="goToRegister()">
+          <ion-icon slot="start" name="person-add"></ion-icon>
+          Ir al Registro
+        </ion-item>
+        <ion-item button (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          Cerrar sesión
+        </ion-item>
+      </ion-list>
+       <!-- Ícono de la X (parte inferior, centrado) -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-button fill="clear">
+          <ion-icon name="close-outline"></ion-icon> <!-- X -->
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>

@@ -10,35 +10,42 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./login/login.page').then(m => m.LoginPage)
   },
-
-  // REGISTER (ANTES del redirect)
-  {
-    path: 'register',
-    loadComponent: () => 
-      import('./register/register.page').then(m => m.RegisterPage)
-  },
-
   // INTRO
   {
     path: 'intro',
     loadComponent: () => import('./intro/intro.page').then(m => m.IntroPage)
   },
 
-  // HOME 
-  {
-    path: 'home',
+  // MENU HOME 
+  /*{
+    path: 'menu/home',
     loadComponent: () => import('./home/home.page').then(m => m.HomePage),
     canActivate: [IntroGuard, LoginGuard]
+  },*/
+
+  //REGISTER 
+  {
+  path: 'register',
+  loadComponent: () => import('./register/register.page').then(m => m.RegisterPage)
   },
 
-  // REDIRECT FINAL
+// MENU
+  {
+    path: 'menu',
+    loadComponent: () => import('./menu/menu.page').then(m => m.MenuPage),
+    children:[
+      {
+        path: 'home',
+        loadComponent: () => import('./home/home.page').then(m => m.HomePage),
+        canActivate: [IntroGuard, LoginGuard]
+      }
+    ]
+  },
+
+  // REDIRECT 
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
-  },
-  {
-    path: 'register',
-    loadComponent: () => import('./register/register.page').then( m => m.RegisterPage)
   }
 ];

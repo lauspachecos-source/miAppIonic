@@ -1,0 +1,12 @@
+ion-menu-toggle {
+  position: absolute;
+  right: 10px; /* Ajusta la distancia de la derecha si es necesario */
+}
+
+ion-menu {
+  --max-height: 100%;
+  height: 100%;
+  overflow-y: auto; /* hACE que el menú sea desplazable si el contenido es mayor que el área visible */
+}
+
+

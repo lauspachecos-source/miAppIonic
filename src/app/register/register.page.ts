@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule
-} from '@angular/forms';
-
-import { IonicModule, ToastController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators,FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterService } from '../services/register';
-
+import { ToastController, IonicModule } from '@ionic/angular';
+import { RegisterService } from '../services/register';  // Asegúrate de importar el servicio
 
 @Component({
   selector: 'app-register',
@@ -18,84 +10,47 @@ import { RegisterService } from '../services/register';
   styleUrls: ['./register.page.scss'],
   standalone: true,
   imports: [
-    IonicModule,
-    CommonModule,
-    ReactiveFormsModule
+    IonicModule,  // Asegúrate de importar IonicModule aquí
+    FormsModule,  // Importa FormsModule si estás usando formularios reactivos
+    ReactiveFormsModule  // Asegúrate de tener ReactiveFormsModule para los formularios reactivos
   ]
+
 })
+
 export class RegisterPage implements OnInit {
 
   registerForm!: FormGroup;
   
   constructor(
     private fb: FormBuilder,
-    private registerService: RegisterService,
+    private registerService: RegisterService,  // Inyección del servicio
     private router: Router,
     private toastCtrl: ToastController
-  ) { }
+  ) {}
 
   ngOnInit() {
-
-    
-   this.registerForm = this.fb.group({
-
-    name: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚ ]+$')
-      ]
-    ],
-
-    lastname: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚ ]+$')
-      ]
-    ],
-
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.email
-      ]
-    ],
-
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    ]
-
-  });
-
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      lastname: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
   async register() {
-
     if (this.registerForm.invalid) {
       this.showToast('Formulario inválido');
       return;
     }
 
     try {
-      // Llama al servicio que registra al usuario
+      // Llamamos al servicio para registrar el usuario
       await this.registerService.registerUser(this.registerForm.value);
-
-      // Muestra el mensaje de éxito
       this.showToast('Registro exitoso');
-
-      // Navega a la página de login
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');  // Redirige al login después de registrar
     } catch (error: any) {
-      // Muestra el error si algo falla
-      this.showToast(error);
+      // Si algo falla (correo duplicado, por ejemplo), muestra el error
+      this.showToast(error.message);
     }
   }
 
@@ -103,17 +58,14 @@ export class RegisterPage implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  // Muestra un mensaje Toast para el usuario
   async showToast(message: string) {
-
     const toast = await this.toastCtrl.create({
       message,
       duration: 2000,
       position: 'bottom',
-      color: 'success' 
+      color: 'success',
     });
-
     await toast.present();
-
   }
-
 }
