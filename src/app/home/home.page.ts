@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { StorageService } from '../services/storage';
 import { Router } from '@angular/router';
-
+import { Music } from '../services/music';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [
+
+    HttpClientModule,
     CommonModule,
     IonHeader,
     IonToolbar,
@@ -48,14 +51,36 @@ export class HomePage implements OnInit {
     }
   ];
 
+  tracks: any;
+  albums: any;
+  localArtists: any;
+
   constructor(
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private musicService: Music
   ) {}
 
-  //Ciclo de vida 
+  //Ciclo de vida NGONINIT
   async ngOnInit() {
-    await this.loadStorageData();
+    this.getLocalArtists();
+    this.loadAlbums();
+    this.loadTracks();
+    await this.loadStorageData(); 
+  }
+
+  loadTracks() {
+    this.musicService.getTracks().then(tracks =>{
+      this.tracks = tracks;
+      console.log(this.tracks,"las canciones")
+    })
+  }
+
+    loadAlbums() {
+    this.musicService.getAlbums().then(albums =>{
+      this.albums = albums;
+      console.log(this.albums,"los albums")
+    })
   }
 
   async ionViewWillEnter() {
@@ -99,6 +124,11 @@ export class HomePage implements OnInit {
         resolve(['Rock', 'Pop', 'Jazz']);
       }, 3500);
     });
+  }
+
+  getLocalArtists(){
+    this.localArtists = this.musicService.getLocalArtists();
+    console.log("artistas",this.localArtists.artists)
   }
 }
 

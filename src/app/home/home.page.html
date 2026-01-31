@@ -1,69 +1,26 @@
-<ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Home</ion-title>
-    </ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>  
+  </ion-toolbar>
   </ion-header>
 
 <ion-content >
 
-  <swiper-container pagination ="true" loop="true" slides-per-view="1">
-    <swiper-slide *ngFor="let genre of genres" class="slide"> 
+  <swiper-container 
+  pagination ="true" 
+  loop="true" 
+  slides-per-view="3">
+    <swiper-slide *ngFor="let album of albums"> 
       <div class="slide-content">
-        <h2>{{ genre.title }}</h2>
-        <img [src]="genre.image" [alt]="genre.title">
-        <p> {{ genre.description }}</p>
+        <img [src]="album.image"/>
+        <p>{{ album.name }}</p>
       </div>
     </swiper-slide>
   </swiper-container>
 
-  <div [style.background-color]="colorActual">
-    Hola mundo
-  </div>
-
-  <ion-button (click)="cambiarColor()">
-    Cambiar tema
-  </ion-button>
-
-   <ion-card class="bg-card-test">
-  <ion-card-header>
-    <ion-card-title>Card Title</ion-card-title>
-    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing less.
-  </ion-card-content>
-</ion-card>
-
-  <p *ngIf="introVisited">
-    Ya visitaste la página Intro
-  </p>
-
-  <ion-button (click)="goToIntro()">
-    Ir a Intro
-  </ion-button>
-
-</ion-content>
-
-<!--Demo storage-->
-
-<div>
-  <h3>Demo ionic storage</h3>
-  <div [style.background-color]="colorActual">
-    <p>Tema actual: {{ colorActual === colorOscuro ? 'Oscuro' : 'Claro' }} </p>
-  </div>
-
-  <div>
-    <ion-button (click)="cambiarColor()">Cambiar tema y guardar</ion-button>
-  </div>
-
-  <div>
-    <p class="ion-text-center ion-text-uppercase ion-text-color-primary">Texto centrado</p>
-    <p class="ion-text-left ion-text-lowercase ion-text-capitalize">Texto a la izquierda</p>
-    <p class="ion-text-right ion-text-capitalize ">Texto a la derecha</p>
-    <p class="d-block ion-margin ion-padding">si no me veo</p>
-  </div>
-</div>
+  

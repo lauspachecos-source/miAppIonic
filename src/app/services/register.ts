@@ -10,6 +10,8 @@ export class RegisterService {
     private storage: StorageService
   ) { }
 
+  
+
   async registerUser(data: any) {
 
     return new Promise(async (accept, reject) => {
