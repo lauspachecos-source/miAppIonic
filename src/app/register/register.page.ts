@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators,FormsModule, ReactiveFormsModule, } 
 import { Router } from '@angular/router';
 import { ToastController, IonicModule } from '@ionic/angular';
 import { RegisterService } from '../services/register';  // Asegúrate de importar el servicio
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ import { RegisterService } from '../services/register';  // Asegúrate de import
   imports: [
     IonicModule,  // Asegúrate de importar IonicModule aquí
     FormsModule,  // Importa FormsModule si estás usando formularios reactivos
-    ReactiveFormsModule  // Asegúrate de tener ReactiveFormsModule para los formularios reactivos
+    ReactiveFormsModule,  // Asegúrate de tener ReactiveFormsModule para los formularios reactivos
+    CommonModule
   ]
 
 })

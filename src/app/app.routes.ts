@@ -42,10 +42,17 @@ export const routes: Routes = [
     ]
   },
 
+  //Songs modal
+  {
+    path: 'songs-modal',
+    loadComponent: () => import('./songs-modal/songs-modal.page').then( m => m.SongsModalPage)
+  },
+
   // REDIRECT 
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
   }
+  
 ];

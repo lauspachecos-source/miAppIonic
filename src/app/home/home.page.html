@@ -1,26 +1,76 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Home
+      Your Library
     </ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>  
+    </ion-buttons>
   </ion-toolbar>
-  </ion-header>
+</ion-header>
 
-<ion-content >
+<ion-content>
 
-  <swiper-container 
-  pagination ="true" 
-  loop="true" 
-  slides-per-view="3">
-    <swiper-slide *ngFor="let album of albums"> 
+  <!-- Swiper para los albums -->
+  <swiper-container pagination="true" loop="true" slides-per-view="3">
+    <swiper-slide *ngFor="let album of albums" (click)="showSongs(album)"> 
+      <!--album.id-->
       <div class="slide-content">
-        <img [src]="album.image"/>
+        <img [src]="album.image" />
         <p>{{ album.name }}</p>
       </div>
     </swiper-slide>
   </swiper-container>
 
-  
+  <!-- Swiper para los artistas -->
+
+  <swiper-container pagination="true" loop="true" slides-per-view="3">
+  <swiper-slide *ngFor="let artist of localArtists">
+    <div class="slide-content" (click)="showSongsByArtist(artist)" >
+      <img [src]="artist.image" 
+      [alt]="artist.name" 
+      class="img-standard"
+      (error)="artist.image = 'https://freerangestock.com/sample/164162/silhouette-of-a-musician-on-stage.jpg'" 
+      />
+      <p>{{ artist.name }}</p>
+    </div>
+  </swiper-slide>
+</swiper-container>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-text color="danger" *ngIf="!song.name">
+      <h2 style="margin-left: 15px;">Aquí aparece canción</h2>
+    </ion-text>
+
+    <ion-item color="dark" lines="none" *ngIf="song.name">
+      <ion-label>
+        <p>Ahora suena:</p>
+        <h2>{{ song.name }}</h2>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary">
+          <ion-icon name="play-circle" size="large"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
+<!---
+
+(click)="showSongsByArtist(artist)
+
+
+<ion-footer>
+  <ion-text color="danger" *ngIf="!song?.name">
+    <h2>Aqui aparece cancion</h2>
+  </ion-text>
+  en caso de que si, si hay nombre de cancion, muestrala
+  <ion-text color="primary" *ngIf="song?.name">
+    <h2>{{song.name}}</h2>
+
+  </ion-text>
+</ion-footer>
+-->

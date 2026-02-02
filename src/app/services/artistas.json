@@ -1,6 +1,8 @@
 {"artists": [
   {
+    "id": 1,
     "nombre": "Luna Rivera",
+    "image" : "https://images.squarespace-cdn.com/content/v1/55a3f38be4b011c520315fe5/1662752864542-07ORWEVRPX3YZ1M6AXWO/4.jpg",
     "genero": "Pop",
     "pais": "Colombia",
     "anios_activo": "2012 - presente",
@@ -16,7 +18,9 @@
     ]
   },
   {
+    "id": 2,
     "nombre": "DJ Neón",
+    "image": "https://img.freepik.com/free-photo/cyberpunk-dj-illustration_23-2151656015.jpg?semt=ais_hybrid&w=740&q=80",
     "genero": "Electrónica",
     "pais": "España",
     "anios_activo": "2010 - presente",
@@ -32,7 +36,9 @@
     ]
   },
   {
+    "id": 3,
     "nombre": "Sombra Rebelde",
+    "image": "https://img.freepik.com/vector-premium/woman-character-with-sunglasses-for-neon-music-party-background-vector_779597-1252.jpg?semt=ais_hybrid&w=740&q=80",
     "genero": "Rock",
     "pais": "México",
     "anios_activo": "2005 - 2020",
@@ -52,7 +58,9 @@
     ]
   },
   {
+    "id": 4,
     "nombre": "Carmen Beat",
+    "image": "https://lh6.googleusercontent.com/proxy/DZKXiXE3dtnKSSceAYHmaQWE_mswhobNRGgoMgWs61wp9qJynTLT1OCapdlxVHJcp8KHqpv6b3emFu9YRqBzGLq_bF0PQLrW-ILZJm2bIsiFU5sYFw",
     "genero": "Reggaetón",
     "pais": "Puerto Rico",
     "anios_activo": "2015 - presente",

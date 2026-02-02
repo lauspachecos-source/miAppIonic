@@ -44,3 +44,15 @@
 .texto-centrado {
   text-align: center;
 }
+
+
+swiper-slide .slide-content img {
+  width: 180px !important;   
+  height: 180px !important; 
+  max-width: 95%;            // Permitimos que casi toque los bordes del slide 
+  object-fit: cover;
+  margin: 5px auto !important; // Centramos con poco margen 
+  border-radius: 9px;
+  
+}
+  

@@ -3,15 +3,15 @@
     <ion-header>
       <ion-toolbar>
         <ion-menu-toggle auto-hide="false">
-          <ion-button fill="clear">
+          <ion-button  fill="clear">
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </ion-button>
         </ion-menu-toggle>
         <ion-title>Menú</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
-      <ion-list>
+    <ion-content color= "light" class="ion-padding">
+      <ion-list [inset]="true">
         <ion-item button (click)="goToIntro()">
           <ion-icon slot="start" name="book"></ion-icon>
           Ver la intro
@@ -33,7 +33,7 @@
           Cerrar sesión
         </ion-item>
       </ion-list>
-       <!-- Ícono de la X (parte inferior, centrado) -->
+       <!-- Ícono de la X parte inferior -->
       <ion-menu-toggle auto-hide="false">
         <ion-button fill="clear">
           <ion-icon name="close-outline"></ion-icon> <!-- X -->

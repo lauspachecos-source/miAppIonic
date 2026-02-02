@@ -1,0 +1,13 @@
+.slide-content p {
+  text-align: center;      /* Centra el texto con la imagen */
+  margin-top: 10px;        /* Separa un poco el texto de la foto */
+  font-size: 0.9rem;       /* Tamaño equilibrado */
+  font-weight: 500;        /* Peso medio para mejor lectura */
+  
+ 
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
