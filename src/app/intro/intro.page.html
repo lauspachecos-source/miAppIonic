@@ -1,44 +1,55 @@
 <ion-content class="ion-padding" style="background: var(--app-bg)">
 
+
+
+
+  <div style="display: flex; flex-direction: row; justify-content: space-evenly; gap: 10px; margin-bottom: 15px;">
+  <ion-button (click)="toggleTheme()" size="small" fill="outline" color="tertiary">
+    Dark Mode
+  </ion-button>
+
+  <ion-button (click)="goToIntroAgain()" size="small" fill="outline" color="tertiary">
+    go To Intro
+  </ion-button>
+</div>
   <swiper-container pagination="true" slides-per-view="1">
+    <swiper-slide *ngFor="let slide of slides; let last = last">
+      <div class="slide-wrapper ion-text-center ion-padding"
+     [class.dark-slide]="colorActual === 'dark'"
+     [class.light-slide]="colorActual === 'light'"
+     [class.dark-edm]="colorActual === 'dark' && slide.title === 'EDM'">
 
-    <swiper-slide>
-      <div class="slide-wrapper ion-text-center ion-padding">
+        <!-- Imagen del slide -->
+        <img *ngIf="slide.image" [src]="slide.image" class="slide-image" />
 
-        <h1 style="color: var(--text-title)">
-          Bienvenido 🎵
+        <!-- Título -->
+        <h1 [style.color]="colorActual === 'dark' ? 'var(--text-title-dark)' : 'var(--text-title)'">
+          {{ slide.title }}
         </h1>
 
-        <p style="color: var(--text-body)">
-          Explora géneros musicales y descubre nuevos sonidos
+        <!-- Descripción -->
+        <p [style.color]="colorActual === 'dark' ? 'var(--text-body-dark-alt)' : 'var(--text-body)'">
+          {{ slide.description }}
         </p>
 
-      </div>
-    </swiper-slide>
+        <!-- Mini tarjetas / dato curioso -->
+        <ion-list *ngIf="slide.cards?.length" [inset]="true">
+          <ion-item *ngFor="let card of slide.cards" class="card-slide">
+            <ion-avatar slot="start">
+              <img [src]="card.image" />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.text }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
 
-    <swiper-slide>
-      <div class="slide-wrapper ion-text-center ion-padding">
-        <h1 style="color: var(--text-title)">Rock</h1>
-        <p style="color: var(--text-body)">Guitarras, energía y actitud</p>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide>
-      <div class="slide-wrapper ion-text-center ion-padding">
-        <h1 style="color: var(--text-title)">Pop</h1>
-        <p style="color: var(--text-body)">Melodías pegajosas y ritmo</p>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide>
-      <div class="slide-wrapper ion-text-center ion-padding">
-
-        <h1 style="color: var(--text-title)">Jazz</h1>
-        <p style="color: var(--text-body)">Improvisación, alma y libertad</p>
-
+        <!-- Botón Continuar solo en el último slide -->
         <ion-button
+          *ngIf="last"
           expand="block"
-          style="--background: var(--btn-bg); --color: var(--btn-text)"
+          style="--background: var(--btn-bg); --color: var(--btn-text); margin-top: 15px;"
           (click)="goBack()"
         >
           Continuar
@@ -46,7 +57,60 @@
 
       </div>
     </swiper-slide>
+  </swiper-container>
+</ion-content>
 
+
+<!--
+<ion-content class="ion-padding" style="background: var(--app-bg)">
+
+   Botón para cambiar tema 
+  <ion-button (click)="toggleTheme()" size="small" fill="outline" style="margin-bottom: 10px;">
+    Cambiar Tema
+  </ion-button>
+
+  <swiper-container pagination="true" slides-per-view="1">
+    <swiper-slide *ngFor="let slide of slides; let last = last">
+      <div class="slide-wrapper ion-text-center ion-padding"
+           [class.dark-slide]="colorActual === 'dark'"
+           [class.light-slide]="colorActual === 'light'">
+
+        <img *ngIf="slide.image" [src]="slide.image" class="slide-image" />
+
+        <h1 [style.color]="colorActual === 'dark' ? 'var(--text-title-dark)' : 'var(--text-title)'">
+          {{ slide.title }}
+        </h1>
+
+        <p [style.color]="colorActual === 'dark' ? 'var(--text-body-dark)' : 'var(--text-body)'">
+          {{ slide.description }}
+        </p>
+
+        <ion-list *ngIf="slide.cards?.length" [inset]="true">
+          <ion-item *ngFor="let card of slide.cards" class="card-slide">
+            <ion-avatar slot="start">
+              <img [src]="card.image" />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.text }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-button
+          *ngIf="last"
+          expand="block"
+          style="--background: var(--btn-bg); --color: var(--btn-text); margin-top: 15px;"
+          (click)="goBack()"
+        >
+          Continuar
+        </ion-button>
+
+      </div>
+    </swiper-slide>
   </swiper-container>
 
 </ion-content>
+*/
+
+-->

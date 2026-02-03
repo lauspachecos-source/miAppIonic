@@ -1,78 +1,40 @@
 import { Injectable } from '@angular/core';
-import * as dataArtists from './artistas.json'
+import { HttpClient } from '@angular/common/http';
+import { Artist } from '../home/artist.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Music {
+  private urlServer: string = "https://music.fly.dev";  
 
-  urlServer: string = "https://music.fly.dev"
-  constructor(){}
+  constructor(private http: HttpClient) {}  
 
-  //Es un servicio: me va a devolver todas las canciones de APIS tracks-get all tracks
+  // GET tracks
   getTracks() {
-
-    //en el Get de API hay una url
-    return fetch(`${this.urlServer}/tracks`).then(
-      response => response.json() 
-    );
-    //responde una promesa
+    return this.http.get(`${this.urlServer}/tracks`).toPromise();
   }
 
+  // GET albums
   getAlbums() {
-    return fetch(`${this.urlServer}/albums`).then(
-      response => response.json() 
-    );
-
+    return this.http.get(`${this.urlServer}/albums`).toPromise();
   }
 
-    // 1. Obtener todos los artistas
+  // GET artists
+  // GET artists
   getArtists() {
-    return fetch(`${this.urlServer}/artists`).then(
-      response => response.json()
-    );
+  return this.http.get<Artist[]>(`${this.urlServer}/artists`).toPromise();  //  <Artist[]> a
   }
 
-  // 2. Obtener canciones por artista 
-  async getTracksByArtist(artistId: number | string) {
-  try {
-    const response = await fetch(`${this.urlServer}/tracks/artist/${artistId}`);
-    const data = await response.json();
-    return data; // Esto devuelve el array de canciones directamente
-  } catch (error) {
-    console.error("Error buscando canciones:", error);
-    return [];
-  }
+  // GET /tracks/artist/:id
+  getTracksByArtist(artistId: number | string) {
+  return this.http.get<any[]>(`${this.urlServer}/tracks/artist/${artistId}`).toPromise();  // <any[]>
 }
-  
-  getLocalArtists(){
-    return dataArtists;
-  }
 
+  // GET /tracks/album/:id
   getSongsByAlbum(albumId: string) {
-    return fetch(`${this.urlServer}/tracks/album/${albumId}`).then(
-      response => response.json()
-    )
-  }
-
-  //Crear un servicio para obtener los artistas desde el servidor api
-  // crear un servicio para obtener las cancions de un artista se gace ruta:/tracks/artist/
-  
-async getSongsByArtist(artistId: any) {
-  const response = await fetch(`https://music.fly.dev/tracks/artist/${artistId}`);
-  const data = await response.json();
-  
-  // Como me mostraste que es un array directo [], lo devolvemos tal cual
-  return data;
+  return this.http.get<any[]>(`${this.urlServer}/tracks/album/${albumId}`).toPromise();  // <any[]>
 }
-
-   
-  
+ 
+  // getTracksByArtist
 }
-
-
-
-
-  
-
-

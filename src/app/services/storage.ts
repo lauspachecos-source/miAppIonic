@@ -48,5 +48,11 @@ export class StorageService {
     await this.ready(); //verificar que estes ready para la operacion
     return this._storage?.length();
   }
+
+public async delete(key: string) {
+  await this.ready();
+  return this._storage?.remove(key);
+}
+
   
 }
