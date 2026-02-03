@@ -14,17 +14,20 @@ import { FavoriteService } from '../services/favorite';
 export class SongsModalPage implements OnInit {
 
   @Input() songs: any[] = [];
-  @Input() artist: any;
-  @Input() title: string = '';
-  @Input() image: string = '';
+   @Input() title: string = ''; 
+   @Input() image: string = '';
+  userId = 1;
 
-  userId = 1; // Usuario logueado
   favorites: any[] = [];
 
-  constructor(private modalCtrl: ModalController, private favService: FavoriteService) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private favService: FavoriteService
+  ) {}
 
   ngOnInit() {
-    console.log("Canciones cargadas:", this.songs);
+    console.log('MODAL INICIADO');
+    console.log('Songs:', this.songs);
     this.loadFavorites();
   }
 
@@ -33,81 +36,148 @@ export class SongsModalPage implements OnInit {
   }
 
   selectSong(song: any) {
-    console.log("Canción seleccionada:", song);
+    console.log('Canción enviada al Home:', song);
     this.modalCtrl.dismiss(song);
   }
 
-  // ================= CARGAR FAVORITOS =================
   loadFavorites() {
+    console.log('Cargando favoritos...');
+
     this.favService.getUserFavorites(this.userId).subscribe({
       next: (res: any[]) => {
-        console.log("Favoritos obtenidos del servidor:", res);
+        console.log('Favoritos API:', res);
+
         this.favorites = res;
-        this.markFavorites();
+
+        this.syncFavorites();
       },
-      error: (err) => console.error("Error al cargar favoritos:", err)
+      error: err => {
+        console.error('Error cargando favoritos:', err);
+      }
     });
   }
 
-  markFavorites() {
-  this.songs.forEach(song => {
-    // Buscar si la canción actual está en la lista de favoritos
-    const fav = this.favorites.find(f => f.track_id === song.id);
+  syncFavorites() {
+    console.log('Sincronizando favoritos con lista...');
 
-    if (fav) {
-      song.isFavorite = true;
-      song.favoriteId = fav.id;
-      console.log("Canción reconocida como favorita:", song.name, "favoriteId:", fav.id);
-    } else {
-      song.isFavorite = false;
-      song.favoriteId = null;
-      console.log("Canción NO es favorita:", song.name);
-    }
-  });
-}
+    this.songs.forEach(song => {
 
-toggleFavorite(song: any) {
-  if (song.isFavorite) {
-    this.removeFav(song);
-  } else {
-    // Primero, quitar cualquier otra canción que esté marcada como favorita
-    const currentFav = this.songs.find(s => s.isFavorite);
-    if (currentFav) {
-      this.removeFav(currentFav, () => {
-        this.addFav(song);
-      });
+      const fav = this.favorites.find(f => f.track_id === song.id);
+
+      if (fav) {
+        song.isFavorite = true;
+        song.favoriteId = fav.id;
+      } else {
+        song.isFavorite = false;
+        song.favoriteId = null;
+      }
+
+      console.log(
+        'Song:',
+        song.name,
+        'isFavorite:',
+        song.isFavorite,
+        'favoriteId:',
+        song.favoriteId
+      );
+
+    });
+  }
+
+  toggleFavorite(song: any) {
+
+    console.log('CLICK FAVORITO:', song.name);
+    console.log('Estado actual:', song.isFavorite, song.favoriteId);
+
+    if (song.isFavorite) {
+      this.removeFavorite(song);
     } else {
-      this.addFav(song);
+      this.addFavorite(song);
     }
   }
-}
 
-addFav(song: any) {
-  this.favService.addFavorite(this.userId, song.id).subscribe((res: any) => {
-    song.isFavorite = true;
-    song.favoriteId = res.id;
-    // Actualizar el arreglo de favoritos local
-    this.favorites.push({ id: res.id, track_id: song.id });
-    console.log("Se agregó a favoritos:", song.name, "favoriteId:", res.id);
-  }, err => {
-    console.error("Error al agregar favorito:", err);
-  });
-}
+  addFavorite(song: any) {
 
-removeFav(song: any, callback?: () => void) {
-  this.favService.deleteFavoriteByTrack(this.userId, song.id).subscribe({
-    next: () => {
-      song.isFavorite = false;
-      song.favoriteId = null;
-      // Quitar de favoritos local
-      this.favorites = this.favorites.filter(f => f.track_id !== song.id);
-      console.log("Se eliminó de favoritos:", song.name);
-      if (callback) callback();
-    },
-    error: (err) => {
-      console.error("Error al eliminar favorito:", err);
-      if (callback) callback();
+    console.log('Agregando favorito:', song.name);
+
+    this.favService.addFavorite(this.userId, song.id).subscribe({
+
+      next: (res: any) => {
+
+        console.log('Respuesta API ADD:', res);
+
+        song.isFavorite = true;
+        song.favoriteId = res.id;
+
+        this.favorites.push({
+          id: res.id,
+          track_id: song.id
+        });
+
+        this.forceRefresh(song);
+
+      },
+
+      error: err => {
+        console.error('Error ADD:', err);
+      }
+
+    });
+  }
+
+  removeFavorite(song: any) {
+
+    console.log('Quitando favorito:', song.name);
+    console.log('favoriteId:', song.favoriteId);
+
+    if (!song.favoriteId) {
+      console.error('NO HAY favoriteId');
+      return;
     }
-  });
-}
+
+    this.favService.deleteFavorite(song.favoriteId).subscribe({
+
+      next: () => {
+
+        console.log('Favorito eliminado API');
+
+        song.isFavorite = false;
+        song.favoriteId = null;
+
+        this.favorites = this.favorites.filter(
+          f => f.track_id !== song.id
+        );
+
+        this.forceRefresh(song);
+
+      },
+
+      error: err => {
+        console.error('Error DELETE:', err);
+      }
+
+    });
+  }
+
+  forceRefresh(song: any) {
+
+    console.log('Forzando refresco:', song.name);
+
+    const index = this.songs.findIndex(s => s.id === song.id);
+
+    if (index !== -1) {
+
+      this.songs[index] = {
+        ...this.songs[index],
+        isFavorite: song.isFavorite,
+        favoriteId: song.favoriteId
+      };
+
+      this.songs = [...this.songs];
+
+    }
+
+    console.log('Estado final:', song.isFavorite);
+  }
+
 }
